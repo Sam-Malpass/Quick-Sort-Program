@@ -39,9 +39,9 @@ public class FileIO {
 			File file = saveAs.getSelectedFile();
 			/*Modify the file's name if file extension is not present*/
 			String filePath = file.getPath();
-			if(!filePath.toLowerCase().endsWith(".in"))
+			if(!filePath.toLowerCase().endsWith(".txt"))
 			{
-			    file = new File(filePath + ".in");
+			    file = new File(filePath + ".txt");
 			}
 			try 
 			{	
