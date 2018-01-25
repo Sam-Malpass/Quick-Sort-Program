@@ -9,13 +9,24 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class GUI extends Application {
 	private ArrayList<Double> data;
 	public void sortingWindow()
 	{
-		
+		Stage sortingWindow = new Stage();
+		sortingWindow.setTitle("Data");
+		VBox dataOutput = new VBox();
+		HBox buttons = new HBox();
+		Button sort = new Button("Sort");
+		sort.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent actionEvent) {
+				Algorithm.sort(data);
+				ArrayList<Double> sorted = Algorithm.getSorted();
+			}
+		});
 	}
 	public HBox createButtons()
 	{
@@ -43,14 +54,19 @@ public class GUI extends Application {
 				System.exit(0);
 			}
 		});
+		save.setMinSize(100, 100);
+		load.setMinSize(100, 100);
+		exit.setMinSize(100, 100);
+		buttons.getChildren().addAll(save, load, exit);
 		return buttons;
 	}
 	public void start(Stage stage) throws Exception {
 		Stage mainStage = stage;
 		mainStage.setTitle("QuickSort Program");
-		HBox buttonBox = createButtons(); 
+		HBox buttonBox = new HBox();
+		buttonBox = createButtons(); 
 		BorderPane borderPane = new BorderPane();
-		borderPane.setTop(buttonBox);
+		borderPane.setBottom(buttonBox);
 		Scene mainScene = new Scene(borderPane, 300, 100);
 		mainStage.setScene(mainScene);
 		mainStage.show();
